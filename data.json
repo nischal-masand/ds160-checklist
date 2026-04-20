@@ -1,0 +1,250 @@
+[
+  {
+    "id": "ds160-forms",
+    "name": "DS-160 & Visa Forms",
+    "description": "Core application forms and confirmations",
+    "icon": "📄",
+    "theme": "indigo",
+    "items": [
+      {
+        "label": "DS-160 Confirmation Page",
+        "tag": "required"
+      },
+      {
+        "label": "Visa Interview Appointment Confirmation",
+        "tag": "required"
+      },
+      {
+        "label": "MRV Fee Receipt (Visa Fee Payment): It comes along with your appointment confirmation",
+        "tag": "required"
+      }
+    ]
+  },
+  {
+    "id": "passport-photo",
+    "name": "Passport & Photographs",
+    "description": "Travel identity documents",
+    "icon": "🛂",
+    "theme": "emerald",
+    "items": [
+      {
+        "label": "Valid Passport (original)",
+        "tag": "required"
+      },
+      {
+        "label": "Old / Expired Passports (if any)",
+        "tag": "required"
+      },
+      {
+        "label": "Passport-Size Photographs (2x2 inches)",
+        "tag": "required"
+      }
+    ]
+  },
+  {
+    "id": "employment-sponsor",
+    "name": "Employment & Company Sponsorship",
+    "description": "Documents proving employment and company sponsorship for the conference trip",
+    "icon": "🏢",
+    "theme": "cyan",
+    "items": [
+      {
+        "label": "Company Sponsorship",
+        "tag": "required"
+      },
+      {
+        "label": "Company Registration certificate or Certificate of Incorporation",
+        "tag": "required"
+      },
+      {
+        "label": "Employment Verification Letter / Employment certificate (current)",
+        "tag": "required"
+      },
+      {
+        "label": "Leave sanction + NOC / Leave certificate",
+        "tag": "required"
+      },
+      {
+        "label": "Last 3 months payslips",
+        "tag": "required"
+      },
+      {
+        "label": "Employment Contract / Offer Letter / exp letter (all past companies)",
+        "tag": "required"
+      },
+      {
+        "label": "Company ID (Original & photocopy)",
+        "tag": "optional"
+      },
+      {
+        "label": "Address proof from company",
+        "tag": "recommended"
+      }
+    ]
+  },
+  {
+    "id": "conference",
+    "name": "Conference & Event Documents",
+    "description": "Figma Config registration and travel purpose evidence",
+    "icon": "🎪",
+    "theme": "violet",
+    "items": [
+      {
+        "label": "Figma Config Registration / Ticket Confirmation",
+        "tag": "required"
+      },
+      {
+        "label": "Conference Invitation (if received)",
+        "tag": "recommended"
+      },
+      {
+        "label": "Conference Agenda / Schedule",
+        "tag": "recommended"
+      },
+      {
+        "label": "Speaker print out",
+        "tag": "recommended"
+      }
+    ]
+  },
+  {
+    "id": "financial",
+    "name": "Financial Documents",
+    "description": "Proof of financial stability and sponsorship",
+    "icon": "💰",
+    "theme": "amber",
+    "items": [
+      {
+        "label": "Your last 06 months Bank statement with seal & sign from bank",
+        "tag": "required"
+      },
+      {
+        "label": "Company Bank statement for last 6 months  seal & sign from bank",
+        "tag": "required"
+      },
+      {
+        "label": "Latest 03 year ITR acknowledgement",
+        "tag": "required"
+      },
+      {
+        "label": "Company ITR acknowledgement papers for last 3 yrs",
+        "tag": "required"
+      },
+      {
+        "label": "Form 16 / Tax Deduction Certificate (personal for last 3 years)",
+        "tag": "required"
+      },
+      {
+        "label": "MFs investments (CAS)",
+        "tag": "required"
+      },
+      {
+        "label": "Stock investments (CAS should cover this as well)",
+        "tag": "required"
+      },
+      {
+        "label": "EPF statements / Passbook",
+        "tag": "required"
+      },
+      {
+        "label": "ESOP grant letter",
+        "tag": "required"
+      },
+      {
+        "label": "PPF statements",
+        "tag": "required"
+      },
+      {
+        "label": "Fixed Deposit / Investment Certificates (if any)",
+        "tag": "required"
+      },
+      {
+        "label": "Last 3 months salary slip",
+        "tag": "required"
+      }
+    ]
+  },
+  {
+    "id": "travel",
+    "name": "Travel Itinerary & Logistics",
+    "description": "Flight, hotel, and travel plan documentation",
+    "icon": "✈️",
+    "theme": "rose",
+    "items": [
+      {
+        "label": "Hotel Reservation / Accommodation Details",
+        "tag": "optional"
+      },
+      {
+        "label": "Detailed Day-by-Day Travel Plan",
+        "tag": "optional"
+      },
+      {
+        "label": "Flight details",
+        "tag": "optional"
+      }
+    ]
+  },
+  {
+    "id": "ties-home",
+    "name": "Ties to Home Country",
+    "description": "Evidence of strong reasons to return after the trip",
+    "icon": "🏠",
+    "theme": "teal",
+    "items": [
+      {
+        "label": "Vehicle Registration Certificate",
+        "tag": "optional"
+      },
+      {
+        "label": "Marriage Certificate (if married)",
+        "tag": "recommended"
+      },
+      {
+        "label": "Children's School Records (if applicable)",
+        "tag": "optional"
+      },
+      {
+        "label": "Aadhaar card",
+        "tag": "required"
+      },
+      {
+        "label": "Rental agreement",
+        "tag": "recommended"
+      },
+      {
+        "label": "Marriage Certificate (if any)",
+        "tag": "optional"
+      },
+      {
+        "label": "Letter of employement of spouse",
+        "tag": "optional"
+      },
+      {
+        "label": "Property ownership papers ",
+        "tag": "optional"
+      }
+    ]
+  },
+  {
+    "id": "education",
+    "name": "Education & Professional Credentials",
+    "description": "Academic qualifications and professional recognition",
+    "icon": "🎓",
+    "theme": "orange",
+    "items": [
+      {
+        "label": "Highest Degree / College marksheet",
+        "tag": "recommended"
+      },
+      {
+        "label": "12th marksheet",
+        "tag": "recommended"
+      },
+      {
+        "label": "10th marksheet",
+        "tag": "recommended"
+      }
+    ]
+  }
+]
