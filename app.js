@@ -150,6 +150,147 @@ function updateGlobalProgress() {
       dot.style.background = 'var(--text-muted)';
     }
   });
+
+  // 🎉 Easter egg: celebrate at 100%
+  if (percent === 100 && total > 0) {
+    setTimeout(() => showEasterEgg(), 400);
+  }
+}
+
+
+// ============================================
+// 🎉 Easter Egg — Confetti + Modal
+// ============================================
+
+let easterEggShown = false;
+
+function showEasterEgg() {
+  if (easterEggShown) return;
+  easterEggShown = true;
+  launchConfetti();
+  setTimeout(() => showCelebrationModal(), 600);
+}
+
+function launchConfetti() {
+  const canvas = document.createElement('canvas');
+  canvas.id = 'confetti-canvas';
+  canvas.style.cssText = 'position:fixed;inset:0;z-index:10000;pointer-events:none;';
+  document.body.appendChild(canvas);
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const ctx = canvas.getContext('2d');
+  const particles = [];
+  const colors = ['#5e6ad2', '#8c72e6', '#1fae62', '#e59c14', '#d64d50', '#22d3ee', '#f472b6', '#fb923c', '#FFD700', '#FF6B6B', '#fff'];
+
+  for (let i = 0; i < 200; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 3 + 1;
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: -Math.random() * canvas.height * 0.6 - 20,
+      w: Math.random() * 8 + 4,
+      h: Math.random() * 5 + 2,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vx: Math.cos(angle) * speed * 0.4,
+      vy: Math.random() * 0.8 + 0.3,
+      gravity: 0.012 + Math.random() * 0.008,
+      drag: 0.98 + Math.random() * 0.015,
+      rot: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 3,
+      // Flutter: sinusoidal sway
+      swayAmp: Math.random() * 1.5 + 0.5,
+      swayFreq: Math.random() * 0.03 + 0.01,
+      swayOffset: Math.random() * Math.PI * 2,
+      // Wobble: 3D tilt illusion
+      wobbleFreq: Math.random() * 0.06 + 0.02,
+      wobbleOffset: Math.random() * Math.PI * 2,
+      opacity: 1,
+      life: 0,
+    });
+  }
+
+  let frame = 0;
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let alive = false;
+
+    particles.forEach(p => {
+      p.life++;
+
+      // Gravity with terminal velocity
+      p.vy += p.gravity;
+      if (p.vy > 2.5) p.vy = 2.5;
+
+      // Air drag
+      p.vx *= p.drag;
+
+      // Sinusoidal sway (wind drift)
+      p.x += p.vx + Math.sin(p.life * p.swayFreq + p.swayOffset) * p.swayAmp;
+      p.y += p.vy;
+
+      // Rotation slows over time
+      p.rot += p.rotSpeed * (1 - p.life * 0.001);
+
+      // 3D wobble — squash width to simulate flipping
+      const wobble = Math.cos(p.life * p.wobbleFreq + p.wobbleOffset);
+      const displayW = p.w * Math.abs(wobble);
+
+      // Fade out late
+      if (frame > 350) p.opacity -= 0.004;
+      if (p.y > canvas.height + 20 || p.opacity <= 0) return;
+
+      alive = true;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate((p.rot * Math.PI) / 180);
+      ctx.globalAlpha = Math.max(0, p.opacity);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-displayW / 2, -p.h / 2, displayW, p.h);
+      ctx.restore();
+    });
+
+    frame++;
+    if (alive && frame < 600) {
+      requestAnimationFrame(animate);
+    } else {
+      canvas.remove();
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+function showCelebrationModal() {
+  const existing = document.getElementById('easter-egg-modal');
+  if (existing) existing.remove();
+
+  const overlay = document.createElement('div');
+  overlay.id = 'easter-egg-modal';
+  overlay.innerHTML = `
+    <div class="ee-backdrop"></div>
+    <div class="ee-content">
+      <img src="easter-egg.png" alt="See you soon!" class="ee-image" />
+      <button class="ee-close" id="ee-close-btn">Nice! 🎉</button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  // Animate in
+  requestAnimationFrame(() => {
+    overlay.classList.add('visible');
+  });
+
+  // Close handlers
+  overlay.querySelector('.ee-backdrop').addEventListener('click', closeEasterEgg);
+  overlay.querySelector('#ee-close-btn').addEventListener('click', closeEasterEgg);
+}
+
+function closeEasterEgg() {
+  const modal = document.getElementById('easter-egg-modal');
+  if (modal) {
+    modal.classList.remove('visible');
+    setTimeout(() => modal.remove(), 300);
+  }
 }
 
 function updateCategoryState(categoryId) {
@@ -233,6 +374,7 @@ function showToast(message) {
 }
 
 function shareChecklist() {
+  // Generate shareable text
   const lines = ['📋 DS-160 Document Checklist — B1/B2 Visa for Figma Config', ''];
 
   CHECKLIST_DATA.forEach((cat) => {
@@ -281,6 +423,7 @@ function fallbackCopy(text) {
 }
 
 function printChecklist() {
+  // Expand all before printing
   expandAll();
   setTimeout(() => window.print(), 200);
 }
@@ -297,7 +440,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderAll();
   } catch (error) {
     console.error('Failed to load checklist data:', error);
-    document.getElementById('checklist-container').innerHTML = '<p style="text-align:center; padding: 40px; color: var(--accent-rose);">Failed to load checklist data.</p>';
+    document.getElementById('checklist-container').innerHTML = '<p style="text-align:center; padding: 40px; color: var(--accent-rose);">Failed to load checklist. Please start the server using <br><code>node server.js</code></p>';
   }
 
   document.getElementById('btn-expand-all').addEventListener('click', expandAll);
