@@ -27,9 +27,17 @@ SKIP_PATTERNS = [
 ]
 
 
+SKIP_EXTENSIONS = {".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".pdf", ".zip", ".mp4", ".mp3", ".ico", ".woff", ".woff2", ".ttf", ".js", ".css"}
+
+
 def is_internal(url: str) -> bool:
     parsed = urlparse(url)
-    return parsed.netloc in ("", "www.atherenergy.com", "atherenergy.com")
+    if not parsed.netloc in ("", "www.atherenergy.com", "atherenergy.com"):
+        return False
+    ext = os.path.splitext(parsed.path)[1].lower()
+    if ext in SKIP_EXTENSIONS:
+        return False
+    return True
 
 
 def is_excluded(url: str) -> bool:
