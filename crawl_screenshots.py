@@ -21,6 +21,9 @@ SKIP_PATTERNS = [
     "investor-relations",
     "investors",
     "electric-scooter-price-in-",
+    "locate-ather-dealer/",
+    "electric-scooters-in-",
+    "testride/book",
 ]
 
 
